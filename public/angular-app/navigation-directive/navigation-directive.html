@@ -1,0 +1,37 @@
+
+<nav ng-controller="LoginController as vm" class="navbar bg-dark navbar-dark navbar-expand-lg " ng-init="vm.init()">
+        <a class="navbar-brand" href="#/">MeanHotel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-controls="navbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbar">
+          <ul class="navbar-nav mr-auto">
+            <li ng-class="vm.isActiveTab('')" class="nav-item active">
+              <a class="nav-link" href="#!/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li ng-class="vm.isActiveTab('hotel')">
+                    <a class="nav-link" href="#!/hotels">Hotels</a>
+            </li>
+            <li ng-class="vm.isActiveTab('register')" ng-if="!vm.isLoggedIn()">
+                    <a class="nav-link" href="#!/register">Register</a>
+            </li> 
+            <li ng-class="vm.isActiveTab('profile')" ng-if="vm.isLoggedIn()">
+                    <a class="nav-link" href="#!/profile">Profile</a>
+            </li>  
+          </ul>
+          <form ng-if="!vm.isLoggedIn()" class="form-inline my-2 my-lg-0" role="login" ng-submit="vm.login()">
+                <div class="form-group" ng-class="{'has-error' : vm.error}">
+                    <input type="text" class="form-control mr-sm-2" placeholder="Username" ng-model="vm.username" autocapitalize="none">
+                </div>
+                <div class="form-group" ng-class="{'has-error' : vm.error}">
+                        <input type="password" class="form-control mr-sm-2" placeholder="Password" ng-model="vm.password" autocapitalize="none">
+                </div>
+                <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Login</button>
+            </form>
+            <ul ng-if="vm.isLoggedIn()" class="form-inline my-2 my-lg-0" style="list-style-type: none">
+                <li><p id="navbar_text">Welcome back {{ vm.loggedinUser}}</p></li>
+                <li><button class="btn btn-outline-info my-2 my-sm-0" ng-click="vm.logout()">Logout</button></li>
+            </ul>
+        </div>
+      </nav>

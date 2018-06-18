@@ -1,0 +1,30 @@
+var express = require('express');
+var path = require('path');
+var router = express.Router();
+
+router
+    .route('/json')
+    .get(function(req, res){       //This route is use for /json i.e json object.
+        console.log("Get the JSON data.");
+        res
+        .status('200')
+        .json({ jsondata : true });      //use for sending the json object to the browser.
+    })
+    .post(function(req, res){       //This route is use for /json i.e json object.
+        console.log("POST the JSON data.");
+        res
+        .status('200')
+        .json({ jsondata : 'transfer to server' });      //use for sending the json object to the browser.
+    });
+
+router
+    .route('/file')
+    .get(function(req, res){       //This route is use for /json i.e json object.
+        console.log("Get the File.");
+        res
+        .status('200')
+        .sendFile(path.join(__dirname, 'index.js'));      //use for sending the json object to the browser.
+    })
+   
+
+module.exports = router;

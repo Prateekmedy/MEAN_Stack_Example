@@ -1,0 +1,25 @@
+<h1> {{ vm.hotel.name}} - <hotel-rating stars="vm.stars"></hotel-rating></h1>
+<p>{{ vm.hotel.location.address }}</p>
+<p>{{ vm.hotel.description }}</p>
+<p>This hotel offers the following services : </p>
+<p><ul><li ng-repeat="service in vm.hotel.services">{{ service }}</li></ul></p>
+<br>
+<h3>Reviews</h3>
+<p><ul><li ng-repeat="review in vm.hotel.reviews">{{ review.name }} : {{ review.review }}</li></ul></p>
+<br>
+<br>
+<form ng-if="vm.isLoggedIn()" id="review_form" name="vm.reviewForm" ng-submit="vm.addReview()">
+
+    Your Rating : <input type="number" name="rating" required ng-pattern="/^[1-5]$/" ng-model="vm.rating">
+    <div ng-show="vm.reviewForm.rating.$dirty && vm.reviewForm.$invalid && vm.isSubmitted">
+        <p>Rating must be between 1 - 5</p>
+    </div>
+    
+    Your Review : <textarea name="review" required ng-model="vm.review"></textarea>
+    <div ng-show="vm.reviewForm.review.$dirty && vm.reviewForm.review.$invalid && vm.isSubmitted">
+        <p>Please add a review</p>
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>

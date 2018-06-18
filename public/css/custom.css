@@ -1,0 +1,41 @@
+html{
+  min-height: 100%;
+   position: relative;
+}
+body{
+    margin: 0px;
+    background-color: darkslateblue;
+    color: white;
+}
+
+#footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-image: url("../images/footer_image.jpg");
+    /* background-attachment: fixed; */
+    background-position: center;
+    
+    
+}
+#navbar_div{
+    display: inline;
+    width: 100%;
+}
+#navbar_text{
+    margin-right: 100px;
+    margin-bottom: 5px;
+    color: darkgrey;
+}
+#main_container{
+    padding : 60px 0 0 0;
+}
+#footer_container{
+    padding-top: 10px;
+    
+}
+#review_form{
+    margin-bottom: 150px;
+}
+/*test*/

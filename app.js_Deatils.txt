@@ -1,0 +1,55 @@
+var express = require('express'); //we reqiure the express file
+
+var app = express(); //assing the object that return from the express calling method || Instantiate the express
+app.set('port',3000); //By using app.set() we set the port number
+
+var path = require('path');  //make a variable for using the path
+var routes = require('./routes'); //make the connectivity from the index.js file in the routes folder
+
+//we provide the route for the perticular url by using get method of express object i.e. 'app',
+//we use a callback function with parameter req as request & res as response for defining the
+// process of what should it do if the route is this.
+
+app.use(function(req, res, next){       //we use app.use here for the middleware as ew can look at  
+    console.log(req.method, req.url);  //the every request with the function having parameter (req, res, next).
+    next();
+});
+
+app.use(express.static(path.join(__dirname, 'public'))); //we use app.use with express.static to get all static assests for the website 
+
+app.use('/api', routes); //use the api route to routes throught different url
+
+/*
+
+app.get('/',function(req, res){                 //This route is use for root access i.e. Homepage. 
+    console.log("Get the Homepage.");
+    res
+    .status('200')
+    .sendFile(path.join(__dirname, 'public', 'index.html')); //use for sending the static files to the browser.
+});
+
+
+
+app.get('/json',function(req, res){       //This route is use for /json i.e json object.
+    console.log("Get the JSON data.");
+    res
+    .status('200')
+    .json({ jsondata : true });      //use for sending the json object to the browser.
+});
+
+app.get('/file',function(req, res){   //This is use for file sending purpose.
+    console.log("Get the file.");
+    res
+    .status('200')
+    .sendFile(path.join(__dirname, 'app.js'));
+});
+
+*/
+
+//we use app.listen() method to listen the request from the server with callback funcion as it run Asynchronously,
+//we have to aassign the returning object of the app.listen method to server the various properties of server request.
+var server = app.listen(app.get('port'), function(){
+    var port = server.address().port; //use for fetching the port number from the server object of app.listen method.
+    console.log("Magic happens on Port " + port);
+});
+//console.log("Me first!");

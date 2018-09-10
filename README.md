@@ -1,3 +1,3 @@
 # MEAN_Stack_Example
-# visit on this link for workinh view
+# visit on this link for working view
 # https://salty-mountain-60325.herokuapp.com
